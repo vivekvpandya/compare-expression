@@ -5,7 +5,9 @@ class Expressions extends Component {
     state = {  
         // either 0th expression is greater of 1st
         greater : 0,
-        isCorrect : "choose"
+        isCorrect : "choose",
+        expressionA : ArithmeticExpression,
+        expressionB : ArithmeticExpression
     };
     componentDidMount() {
         document.addEventListener('keydown', this.handler, true);
@@ -27,8 +29,8 @@ class Expressions extends Component {
         return (
             <div>
             <div>
-            <ArithmeticExpression />
-            <ArithmeticExpression />
+                {this.state.expressionA}
+                {this.state.expressionB}
           </div>
                   <div>
                     <span>{ this.state.isCorrect}</span>
