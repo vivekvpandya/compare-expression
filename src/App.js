@@ -13,20 +13,18 @@ function App() {
   ]
   };
   var expressions = expressionData["expressions"].map(function(exp) {
-    console.log("Vivek");
     let expA = exp['expA'];
     let expB = exp['expB'];
     let greater = exp['greater'];
-    console.log(expA);
-    console.log(expB);
-    console.log(greater);
 
 
-    let expressionA = React.createElement(ArithmeticExpression, null);
-    let expressionB = React.createElement(ArithmeticExpression, null);
 
-    return React.createElement(Expressions, null, greater, "", expressionA, expressionB);
+    let expressionA = React.createElement(ArithmeticExpression, {expression : expA});
+    let expressionB = React.createElement(ArithmeticExpression, {expression : expB});
+
+    return React.createElement(Expressions, { greater: greater, isCorrect : "", expressionA: expressionA, expressionB: expressionB});
   });
+  console.log(expressions)
   return (
     <div className="App">
         <Timebar />
