@@ -1,17 +1,33 @@
 import React, { Component, useEffect } from 'react';
+import Timebar from './timebar';
+
 
 class Expressions extends Component {
-    state = {  
-        // either 0th expression is greater of 1st
-        greater : 0,
-        isCorrect : "choose",
-        expressionA : "6 + 2",
-        expressionB : "1 + 3"
-    };
+
     componentDidMount() {
         document.addEventListener('keydown', this.handler, true);
+        var that = this;
+        setTimeout(function() {
+            that.show();
+        }, that.props.wait);
+    }
+    constructor(props) {
+        super(props);
+        this.state = {
+            greater : props.greater,
+            isCorrect: props.isCorrect, 
+            expressionA: props.expressionA,
+            expressionB : props.expressionB,
+            wait : props.wait
+        }
+    }
+    getInitialState() {
+        return({hidden : "hidden"});
     }
 
+    show() {
+        this.setState({hidden : ""});
+    }
     handler = (event) => {
         console.log(event)
         if (event.key === "f" && this.state.greater === 0 ){
@@ -26,7 +42,9 @@ class Expressions extends Component {
     };
     render() { 
         return (
-            <div>
+            <div className={this.state.hidden}>
+                        <Timebar />   
+
             <div>
                 <span>{this.state.expressionA}</span>
                 <span>{this.state.expressionB}</span>
