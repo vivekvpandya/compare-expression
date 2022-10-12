@@ -4,7 +4,6 @@ import React from "react";
 import { useEffect } from 'react';
 import Timebar from './components/timebar';
 import Expressions from './components/expressions';
-import ArithmeticExpression from './components/arithmatic-expression';
 
 function App() {
 
@@ -19,17 +18,17 @@ function App() {
 
 
 
-    let expressionA = React.createElement(ArithmeticExpression, {expression : expA});
-    let expressionB = React.createElement(ArithmeticExpression, {expression : expB});
 
-    return React.createElement(Expressions, { greater: greater, isCorrect : "", expressionA: expressionA, expressionB: expressionB});
+
+    return React.createElement(Expressions, { greater: greater, isCorrect : "", expressionA: expA, expressionB: expB});
   });
   console.log(expressions)
   return (
     <div className="App">
         <Timebar />
+  <Expressions />      
 
-{expressions}
+ {expressions}
 
     </div>
   );

@@ -1,13 +1,12 @@
 import React, { Component, useEffect } from 'react';
-import ArithmeticExpression from './arithmatic-expression';
 
 class Expressions extends Component {
     state = {  
         // either 0th expression is greater of 1st
         greater : 0,
         isCorrect : "choose",
-        expressionA : ArithmeticExpression,
-        expressionB : ArithmeticExpression
+        expressionA : "6 + 2",
+        expressionB : "1 + 3"
     };
     componentDidMount() {
         document.addEventListener('keydown', this.handler, true);
@@ -29,8 +28,8 @@ class Expressions extends Component {
         return (
             <div>
             <div>
-                {this.state.expressionA}
-                {this.state.expressionB}
+                <span>{this.state.expressionA}</span>
+                <span>{this.state.expressionB}</span>
           </div>
                   <div>
                     <span>{ this.state.isCorrect}</span>
