@@ -1,28 +1,43 @@
-import logo from './logo.svg';
 import './App.css';
-import React from "react";
-import { useEffect } from 'react';
+import React, { useEffect } from "react";
+import { useState } from 'react';
 import Expressions from './components/expressions';
 
 function App() {
-
+  const [count, setCount] = useState(0);
   var expressionData = { expressions : [
-    {expA: "6 + 2", expB: "5 - 3", greater : 0, wait : 0},
-    {expA: "6 + 1", expB: "14 - 3", greater : 1, wait : 300}
+    {id: "exp0", expA: "6 + 2", expB: "5 - 3", greater : 0, showAfter : 0, hideAfter: 6000},
+    {id: "exp1", expA: "6 + 1", expB: "14 - 3", greater : 1, showAfter : 6000, hideAfter: 12000}
   ]
   };
+  function incrementCount () {
+    console.log("count :" + count)
+    setCount(count + 1);
+  }
+
+  useEffect(() => {
+    console.log("effect " + count)
+  }, [count])
+
   var expressions = expressionData["expressions"].map(function(exp) {
     let expA = exp['expA'];
     let expB = exp['expB'];
     let greater = exp['greater'];
-    let wait = exp['wait'];
+    let showAfter = exp['showAfter'];
+    let hideAfter = exp['hideAfter'];
+    let id = exp['id'];
+
     return React.createElement(
       Expressions,
-      { wait: wait,
+      {
+        id : id,
         greater: greater,
         isCorrect : "",
         expressionA: expA,
-        expressionB: expB
+        expressionB: expB,
+        showAfter: showAfter,
+        hideAfter: hideAfter,
+        updateCount : incrementCount,
       }
     );
   });

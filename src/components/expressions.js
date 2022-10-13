@@ -6,58 +6,57 @@ class Expressions extends Component {
 
     componentDidMount() {
         document.addEventListener('keydown', this.handler, true);
-        var that = this;
-        setTimeout(function() {
-            that.show();
-        }, that.props.wait);
+        setTimeout(() => { this.setState({isVisible : false})}, this.state.hideAfter);
     }
     constructor(props) {
         super(props);
         this.state = {
+            id : props.id,
             greater : props.greater,
             isCorrect: props.isCorrect, 
             expressionA: props.expressionA,
             expressionB : props.expressionB,
-            wait : props.wait
+            showAfter : props.showAfter,
+            hideAfter : props.hideAfter,
+            isVisible : false
         }
-    }
-    getInitialState() {
-        return({hidden : "hidden"});
-    }
+        setTimeout(() => { this.setState({isVisible : true})}, props.showAfter);
+    };
 
-    show() {
-        this.setState({hidden : ""});
-    }
+
     handler = (event) => {
+        if (this.state.isVisible) {
         console.log(event)
         if (event.key === "f" && this.state.greater === 0 ){
             this.setState({isCorrect: "true"})
+            this.props.updateCount()
         } else if (event.key === "j" && this.state.greater === 1) {
             this.setState({isCorrect: "true"})
+            this.props.updateCount()
         } else if (event.key === "j" && this.state.greater === 0) {
             this.setState({isCorrect: "false"})
         } else if (event.key === "f" && this.state.greater === 1) {
             this.setState({isCorrect: "false"})
         }
+    }
     };
     render() { 
-        return (
-            <div className={this.state.hidden}>
-                        <Timebar />   
-
-            <div>
-                <span>{this.state.expressionA}</span>
-                <span>{this.state.expressionB}</span>
-          </div>
-                  <div>
-                    <span>{ this.state.isCorrect}</span>
-                  </div>
-                  <div>
-        <label className="btn btn-primary">Press F if RED is Greater</label>
-        <label className="btn btn-primary">Press J if BLUE is Greater</label>
-        </div>
-                  </div>
-        );
+        const isVisible = this.state.isVisible;
+        return isVisible ? <div id={this.state.id}>
+                    { isVisible && <Timebar /> }
+        
+         <div>
+            { isVisible && <span>{this.state.expressionA}</span> }
+            { isVisible && <span>{this.state.expressionB}</span> }
+         </div>
+              <div>
+                { isVisible && <span>{ this.state.isCorrect}</span> }
+              </div>
+              <div>
+         { isVisible && <label className="btn btn-primary">Press F if RED is Greater</label> }
+         { isVisible && <label className="btn btn-primary">Press J if BLUE is Greater</label> }
+         </div>
+      </div> : <div />;
     }
 }
  
