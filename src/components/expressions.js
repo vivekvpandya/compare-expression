@@ -43,18 +43,15 @@ class Expressions extends Component {
     render() { 
         const isVisible = this.state.isVisible;
         return isVisible ? <div id={this.state.id}>
-                    { isVisible && <Timebar /> }
-        
-         <div>
-            { isVisible && <span>{this.state.expressionA}</span> }
-            { isVisible && <span>{this.state.expressionB}</span> }
-         </div>
-              <div>
-                { isVisible && <span>{ this.state.isCorrect}</span> }
-              </div>
-              <div>
-         { isVisible && <label className="btn btn-primary">Press F if RED is Greater</label> }
-         { isVisible && <label className="btn btn-primary">Press J if BLUE is Greater</label> }
+                   
+         <div className='row exp'>
+            { isVisible && <Timebar /> }
+            { isVisible && <h2 className='col md-6 red'>{this.state.expressionA}</h2> }
+            { isVisible && <h2 className='col md-6 blue'>{this.state.expressionB}</h2> }
+            { isVisible && <span>{ this.state.isCorrect}</span> }
+
+         { isVisible && <label >Press F if RED is Greater</label> }
+         { isVisible && <label >Press J if BLUE is Greater</label> }
          </div>
       </div> : <div />;
     }

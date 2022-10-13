@@ -6,8 +6,8 @@ import Expressions from './components/expressions';
 function App() {
   const [count, setCount] = useState(0);
   var expressionData = { expressions : [
-    {id: "exp0", expA: "6 + 2", expB: "5 - 3", greater : 0, showAfter : 0, hideAfter: 6000},
-    {id: "exp1", expA: "6 + 1", expB: "14 - 3", greater : 1, showAfter : 6000, hideAfter: 12000}
+    {id: "exp0", expA: "6 + 2 ", expB: "5 - 3", greater : 0, showAfter : 0, hideAfter: 6000},
+    {id: "exp1", expA: "6 + 1 ", expB: "14 - 3", greater : 1, showAfter : 6000, hideAfter: 12000}
   ]
   };
   function incrementCount () {
